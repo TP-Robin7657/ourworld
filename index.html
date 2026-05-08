@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>我们走到这里 · Happy Anniversary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./260506 - Anniversary Map Style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="cover" class="cover">
+      <div class="cover-card-wrap">
+        <img src="./260506 - Anniversary Map Assets/Cover Card Cropped.png" alt="我们的世界地图 · May 12 · 2026">
+        <button id="startButton" class="cover-start-zone" type="button" aria-label="进入地图"></button>
+      </div>
+    </section>
+    <section class="stage">
+      <canvas id="world"></canvas>
+      <div class="hud top-left">
+        <img class="hud-card-img" src="./260506 - Anniversary Map Assets/HUD Card.png" alt="我们走到这里">
+        <div class="hud-progress-overlay" id="progressHud">
+          <span class="hud-heart">♥</span>
+          <span class="hud-progress-label">已通关</span>
+          <span class="hud-progress-num" id="progressDone">0</span>
+          <span class="hud-progress-sep">/</span>
+          <span class="hud-progress-total" id="hudTotalProgress">20</span>
+        </div>
+      </div>
+      <div class="hud top-right">
+        <button id="homeButton" class="icon-button" type="button" aria-label="回到北京">⌂</button>
+        <button id="nextButton" class="icon-button" type="button" aria-label="下一个地点">✈</button>
+        <button id="resetButton" class="icon-button" type="button" aria-label="重新开始" title="重新开始">↺</button>
+        <button id="muteButton" class="icon-button" type="button" aria-label="静音切换" title="静音切换">🔊</button>
+      </div>
+      <div id="placeHint" class="place-hint">
+        <span class="hint-name">北京</span>
+        <span class="hint-copy">最大的一站，因为很多以后都从这里长出来。</span>
+      </div>
+      <div id="flightCard" class="flight-card" aria-live="polite">
+        <span class="flight-plane">✈</span>
+        <span id="flightText">正在起飞</span>
+      </div>
+    </section>
+
+    <aside id="gallery" class="gallery" aria-hidden="true">
+      <div class="gallery-panel">
+        <button id="closeGallery" class="close-button" type="button" aria-label="关闭相册">×</button>
+        <div class="gallery-copy">
+          <p id="galleryKicker" class="kicker">Home Base</p>
+          <h2 id="galleryTitle">北京</h2>
+          <p id="galleryLine">最大的一站，因为很多以后都从这里长出来。</p>
+        </div>
+        <div class="photo-frame">
+          <button id="prevPhoto" class="photo-nav prev" type="button" aria-label="上一张">‹</button>
+          <img id="galleryPhoto" alt="地点照片">
+          <button id="nextPhoto" class="photo-nav next" type="button" aria-label="下一张">›</button>
+        </div>
+        <div class="photo-meta">
+          <span id="photoDate">2017.01.08</span>
+          <span id="photoCount">1 / 1</span>
+        </div>
+        <div class="gallery-no-photo">
+          <p>这里我们暂时还没有上传照片</p>
+          <p>但美食消消乐已经准备好啦 🍴</p>
+        </div>
+        <button id="playGameButton" class="play-game-button" type="button" data-place-id="beijing">
+          <span class="play-btn-tag">第 1 关</span>
+          <span class="play-btn-main">玩 京味儿点心铺 消消乐 🍴</span>
+        </button>
+      </div>
+    </aside>
+
+    <div id="finale" class="finale" aria-hidden="true">
+      <div class="finale-bg"></div>
+      <div class="finale-confetti" aria-hidden="true"></div>
+      <div class="finale-card">
+        <p class="finale-kicker">May 12 · 2026</p>
+        <h1 class="finale-title">
+          <span class="rainbow">HAPPY</span>
+          <span class="rainbow rainbow-2">ANNIVERSARY</span>
+        </h1>
+        <div class="finale-cake">
+          <span class="cake-emoji">🎂</span>
+          <span class="cake-num" id="finaleTotalCake">20</span>
+        </div>
+        <p class="finale-subtitle"><span id="finaleTotalSub">20</span> 关全部通关 ✨</p>
+        <p class="finale-message">
+          走过 <span id="finaleTotalMsg">20</span> 个地方，<br>
+          每一站，最美的风景都是你。<br>
+          周年快乐，最爱的太太 💕
+        </p>
+        <div class="finale-rewards">
+          <div class="finale-reward"><span class="reward-icon">🪙</span><span class="reward-num">1000</span></div>
+          <div class="finale-reward"><span class="reward-icon">💎</span><span class="reward-num" id="finaleTotalGem">20</span></div>
+          <div class="finale-reward"><span class="reward-icon">♾️</span><span class="reward-num">爱</span></div>
+          <div class="finale-reward"><span class="reward-icon">🎁</span><span class="reward-num">1</span></div>
+        </div>
+        <div class="finale-actions">
+          <button id="finaleReset" class="finale-btn ghost" type="button">从头再玩</button>
+          <button id="finaleBack" class="finale-btn" type="button">返回地图</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./260506 - Anniversary Map Assets/Three Global.js"></script>
+  <script src="./260506 - Anniversary Map Assets/Food Icons.js"></script>
+  <script src="./260506 - Anniversary Map Assets/Map Places Data.js"></script>
+  <script src="./260506 - Anniversary Map Assets/Photo Override.js"></script>
+  <script src="./260506 - Anniversary Map Audio.js"></script>
+  <script src="./260506 - Anniversary Map Match3.js"></script>
+  <script src="./260506 - Anniversary Map App.js"></script>
+</body>
+</html>
