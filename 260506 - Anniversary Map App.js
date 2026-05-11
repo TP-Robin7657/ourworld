@@ -771,16 +771,17 @@ function openGallery(place) {
   updatePlayButton(place);
   gallery.classList.add("open");
   gallery.setAttribute("aria-hidden", "false");
+}
+
 function renderPhoto() {
   const photos = galleryPlace.photos || [];
   if (!photos.length) return;
   const idx = ((galleryIndex % photos.length) + photos.length) % photos.length;
   const photo = photos[idx];
   if (!photo) return;
-  
+
   galleryPhoto.classList.add("swap");
-  
-  // Preload image and wait for it to load
+
   const img = new Image();
   img.onload = () => {
     galleryPhoto.src = photo.src;
@@ -789,13 +790,14 @@ function renderPhoto() {
     galleryPhoto.classList.remove("swap");
   };
   img.onerror = () => {
-    // Fallback: still remove swap class even if image fails
     console.error(`Failed to load photo: ${photo.src}`);
     galleryPhoto.src = photo.src;
     galleryPhoto.classList.remove("swap");
   };
-  img.src = photo.src; // Start loading
+  img.src = photo.src;
 }
+
+function updatePlayButton(place) {
   const btn = document.querySelector("#playGameButton");
   if (!btn) return;
   const idx = places.findIndex((p) => p.id === place.id);
